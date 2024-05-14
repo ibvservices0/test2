@@ -83,7 +83,14 @@
                 })
                 .then((response) => response.json())
                 .then((respjson) => {
-                    console.log(respjson.access_token); 
+                    if(respjson.access_token){
+                        divAutorizando.setAttribute("hidden", "hidden");
+                        divAutorizadoOk.removeAttribute("hidden");
+                    }
+                    else{
+                        divAutorizando.setAttribute("hidden", "hidden");
+                        divAutorizadoError.removeAttribute("hidden");
+                    }
                 });
             }
 
