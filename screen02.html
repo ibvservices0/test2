@@ -58,15 +58,15 @@
 
         <script>
 
-            function check_visible(value_ac0_0, value_ac1_0, value_ac2_0){
+            function check_visible(valueX, valueY, valueZ){
                 let divButton = document.getElementById("div_button");
                 var resp_check = false;
-                var anguloX = Math.asin(value_ac0_0 / -9.8) * 180 / Math.PI;
+                var anguloX = Math.asin(valueX / -9.8) * 180 / Math.PI;
                 anguloX = Math.abs(anguloX);
                 if ((anguloX >= 30) && (anguloX <= 50)){
                     resp_check = true;
                 }
-                var anguloY = Math.asin(value_ac1_0 / -9.8) * 180 / Math.PI;
+                var anguloY = Math.asin(valueY / -9.8) * 180 / Math.PI;
                 anguloY = Math.abs(anguloY);
                 if (anguloY > 10){
                     resp_check = false;

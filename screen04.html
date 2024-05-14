@@ -50,5 +50,65 @@
             <div class="mytitle">FOTO-3</div>
             <a href="screen05.html">Siguiente</a>
         </div>
+
+        <br><br>
+        <div id="div_button" hidden="hidden" width="270px" height= "50px">THE-BUTTON</div>
+        
+
+        <script>
+
+            function check_visible(valueX, valueY, valueZ){
+                let divButton = document.getElementById("div_button");
+                var resp_check = false;
+                var anguloX = Math.asin(valueX / -9.8) * 180 / Math.PI;
+                anguloX = Math.abs(anguloX);
+                if ((anguloX >= 30) && (anguloX <= 50)){
+                    resp_check = true;
+                }
+                var anguloY = Math.asin(valueY / -9.8) * 180 / Math.PI;
+                anguloY = Math.abs(anguloY);
+                if (anguloY > 10){
+                    resp_check = false;
+                }
+                if (resp_check) divButton.removeAttribute("hidden");
+                else divButton.setAttribute("hidden", "hidden");
+            }
+
+
+            function handleMotion(event) {
+                var ac0_2_raw = event.accelerationIncludingGravity.x;
+                var ac1_2_raw = event.accelerationIncludingGravity.y;
+                var ac2_2_raw = event.accelerationIncludingGravity.z;
+                var ac0_2 = 0;
+                if (ac0_2_raw.toFixed(10) > 9.8) ac0_2 = 9.8;
+                else if (ac0_2_raw.toFixed(10) < -9.8) ac0_2 = -9.8;
+                else ac0_2 = ac0_2_raw.toFixed(10);
+                var ac1_2 = 0;
+                if (ac1_2_raw.toFixed(10) > 9.8) ac1_2 = 9.8;
+                else if (ac1_2_raw.toFixed(10) < -9.8) ac1_2 = -9.8;
+                else ac1_2 = ac1_2_raw.toFixed(10);
+                var ac2_2 = 0;
+                if (ac2_2_raw.toFixed(10) > 9.8) ac2_2 = 9.8;
+                else if (ac2_2_raw.toFixed(10) < -9.8) ac2_2 = -9.8;
+                else ac2_2 = ac2_2_raw.toFixed(10);
+                check_visible(ac0_2, ac1_2, ac2_2);
+            }
+
+
+            function launch_accelerometers(){
+                // Request permission for iOS 13+ devices
+                if (DeviceMotionEvent &&
+                    typeof DeviceMotionEvent.requestPermission === "function") {
+                        DeviceMotionEvent.requestPermission();
+                }
+
+                window.addEventListener("devicemotion", handleMotion);
+            }
+
+
+            document.addEventListener("DOMContentLoaded", () => {launch_accelerometers();});
+
+        </script>
+
     </body>
 </html>
