@@ -83,9 +83,8 @@
                 })
                 .then((response) => response.json())
                 .then((respjson) => {
-                    console.log(respjson);
-                    //let objResponse = JSON.parse(respjson);
-                    //console.log(objResponse.access_token);
+                    let objResponse = JSON.stringify(respjson);
+                    console.log(objResponse);
                 });
             }
 
