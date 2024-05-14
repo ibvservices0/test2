@@ -60,12 +60,19 @@
 
             function check_visible(value_ac0_0, value_ac1_0, value_ac2_0){
                 let divButton = document.getElementById("div_button");
-                if (Math.abs(value_ac2_0) === 9.8){
-                    divButton.setAttribute("hidden", "hidden");
+                var resp_check = false;
+                var anguloX = Math.asin(value_ac0_0 / -9.8) * 180 / Math.PI;
+                anguloX = Math.abs(anguloX);
+                if ((anguloX >= 30) && (anguloX <= 50)){
+                    resp_check = true;
                 }
-                else{
-                    divButton.removeAttribute("hidden");
+                var anguloY = Math.asin(value_ac1_0 / -9.8) * 180 / Math.PI;
+                anguloY = Math.abs(anguloY);
+                if (anguloY > 10){
+                    resp_check = false;
                 }
+                if (resp_check) divButton.removeAttribute("hidden");
+                else divButton.setAttribute("hidden", "hidden");
             }
 
 
