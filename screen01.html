@@ -82,7 +82,11 @@
                     }
                 })
                 .then((response) => response.json())
-                .then((json) => console.log(json));
+                .then((respjson) => {
+                    //console.log(respjson);
+                    let objResponse = JSON.parse(respjson);
+                    console.log(objResponse.access_token);
+                });
             }
 
 
