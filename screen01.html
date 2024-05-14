@@ -52,20 +52,17 @@
             <a href="screen02.html">Siguiente</a>
         </div>
 
-        <div id="div_autorizando" class="hidden" width="270px" height= "50px">Autorizando...</div>
-        <div id="div_autorizado_ok" class="hidden" width="270px" height= "50px">Autorizado OK</div>
-        <div id="div_autorizado_error" class="hidden" width="270px" height= "50px">ERROR en autorización</div>
+        <div id="div_autorizando" hidden="hidden" width="270px" height= "50px">Autorizando...</div>
+        <div id="div_autorizado_ok" width="270px" height= "50px">Autorizado OK</div>
+        <div id="div_autorizado_error" width="270px" height= "50px">ERROR en autorización</div>
 
         <script>
 
             function do_authorize(){
                 console.log('comenzamos do_authorize');
                 let divAutorizando = document.getElementById("div_autorizando");
-                //let divAutorizadoOk = document.getElementById("div_autorizado_ok");
-                //let divAutorizadoError = document.getElementById("div_autorizado_error");
-                divAutorizando.classList.remove('hidden');
-                //divAutorizadoOk.classList.remove('hidden');
-                //divAutorizadoError.classList.remove('hidden');
+                let divAutorizadoOk = document.getElementById("div_autorizado_ok");
+                let divAutorizadoError = document.getElementById("div_autorizado_error");
             }
 
 
