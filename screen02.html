@@ -51,5 +51,57 @@
             <div class="mytitle">FOTO-1</div>
             <a href="screen03.html">Siguiente</a>
         </div>
+
+        <br><br>
+        <ul>
+            <li>eje-X: <span id="Accelerometer_gx">0</span><span> m/s<sup>2</sup></span></li>
+            <li>eje-Y: <span id="Accelerometer_gy">0</span><span> m/s<sup>2</sup></span></li>
+            <li>eje-Z: <span id="Accelerometer_gz">0</span><span> m/s<sup>2</sup></span></li>
+        </ul>
+
+        <script>
+
+            function updateFieldIfNotNull(fieldName, value){
+                document.getElementById(fieldName).innerHTML = value;
+            }
+
+
+            function handleMotion(event) {
+                var ac0_0_raw = event.accelerationIncludingGravity.x;
+                var ac1_0_raw = event.accelerationIncludingGravity.y;
+                var ac2_0_raw = event.accelerationIncludingGravity.z;
+                var ac0_0 = 0;
+                if (ac0_0_raw.toFixed(10) > 9.8) ac0_0 = 9.8;
+                else if (ac0_0_raw.toFixed(10) < -9.8) ac0_0 = -9.8;
+                else ac0_0 = ac0_0_raw.toFixed(10);
+                var ac1_0 = 0;
+                if (ac1_0_raw.toFixed(10) > 9.8) ac1_0 = 9.8;
+                else if (ac1_0_raw.toFixed(10) < -9.8) ac1_0 = -9.8;
+                else ac1_0 = ac1_0_raw.toFixed(10);
+                var ac2_0 = 0;
+                if (ac2_0_raw.toFixed(10) > 9.8) ac2_0 = 9.8;
+                else if (ac2_0_raw.toFixed(10) < -9.8) ac2_0 = -9.8;
+                else ac2_0 = ac2_0_raw.toFixed(10);
+                updateFieldIfNotNull('Accelerometer_gx', ac0_0);
+                updateFieldIfNotNull('Accelerometer_gy', ac1_0);
+                updateFieldIfNotNull('Accelerometer_gz', ac2_0);
+            }
+
+
+            function launch_accelerometers(){
+                // Request permission for iOS 13+ devices
+                if (DeviceMotionEvent &&
+                    typeof DeviceMotionEvent.requestPermission === "function") {
+                        DeviceMotionEvent.requestPermission();
+                }
+
+                window.addEventListener("devicemotion", handleMotion);
+            }
+
+
+            document.addEventListener("DOMContentLoaded", () => {launch_accelerometers();});
+
+        </script>
+
     </body>
 </html>
