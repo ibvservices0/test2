@@ -53,16 +53,19 @@
         </div>
 
         <br><br>
-        <ul>
-            <li>eje-X: <span id="Accelerometer_gx">0</span><span> m/s<sup>2</sup></span></li>
-            <li>eje-Y: <span id="Accelerometer_gy">0</span><span> m/s<sup>2</sup></span></li>
-            <li>eje-Z: <span id="Accelerometer_gz">0</span><span> m/s<sup>2</sup></span></li>
-        </ul>
+        <div id="div_button" hidden="hidden" width="270px" height= "50px">THE-BUTTON</div>
+        
 
         <script>
 
-            function updateFieldIfNotNull(fieldName, value){
-                document.getElementById(fieldName).innerHTML = value;
+            function check_visible(value_ac0_0, value_ac1_0, value_ac2_0){
+                let divButton = document.getElementById("div_button");
+                if (Math.abs(value_ac2_0) === 9.8){
+                    divButton.setAttribute("hidden", "hidden");
+                }
+                else{
+                    divButton.removeAttribute("hidden");
+                }
             }
 
 
@@ -82,9 +85,7 @@
                 if (ac2_0_raw.toFixed(10) > 9.8) ac2_0 = 9.8;
                 else if (ac2_0_raw.toFixed(10) < -9.8) ac2_0 = -9.8;
                 else ac2_0 = ac2_0_raw.toFixed(10);
-                updateFieldIfNotNull('Accelerometer_gx', ac0_0);
-                updateFieldIfNotNull('Accelerometer_gy', ac1_0);
-                updateFieldIfNotNull('Accelerometer_gz', ac2_0);
+                check_visible(ac0_0, ac1_0, ac2_0);
             }
 
 
