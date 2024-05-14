@@ -74,7 +74,7 @@
                         username: "cliente1",
                         password: "p9$ieE8rT",
                         grant_type: "password",
-                        license_code: "520401420429863486",
+                        license_code: "520401420429863485",
                         device: "access_preview"
                     }),
                     headers: {
@@ -85,7 +85,9 @@
                 .then((respjson) => {
                     if(respjson.access_token){
                         divAutorizando.setAttribute("hidden", "hidden");
+                        localStorage.setItem('feet_accesstoken', respjson.access_token);
                         divAutorizadoOk.removeAttribute("hidden");
+                        console.log(localStorage.getItem('feet_accesstoken'));
                     }
                     else{
                         divAutorizando.setAttribute("hidden", "hidden");
