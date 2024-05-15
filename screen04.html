@@ -77,7 +77,7 @@
 
 
             function check_visible(valueX, valueY, valueZ){
-                let divButton = document.getElementById("div_button");
+                let btTakePhoto2 = document.getElementById("bt_takePhoto");
                 var resp_check = false;
                 var anguloX = Math.asin(valueX / -9.8) * 180 / Math.PI;
                 anguloX = Math.abs(anguloX);
@@ -89,8 +89,8 @@
                 if (anguloY > 10){
                     resp_check = false;
                 }
-                if (resp_check) divButton.removeAttribute("hidden");
-                else divButton.setAttribute("hidden", "hidden");
+                if (resp_check) btTakePhoto2.removeAttribute("hidden");
+                else btTakePhoto2.setAttribute("hidden", "hidden");
             }
 
 
@@ -116,10 +116,10 @@
                     'ac2_2': ac2_2
                 };
                 updateFieldIfNotNull('Accelerometer_gx', ac0_2);
-                updateFieldIfNotNull('Accelerometer_gx', ac1_2);
-                updateFieldIfNotNull('Accelerometer_gx', ac2_2);
-                //localStorage.removeItem('feet_pose3');
-                //localStorage.setItem('feet_pose3', JSON.stringify(pose3));
+                updateFieldIfNotNull('Accelerometer_gy', ac1_2);
+                updateFieldIfNotNull('Accelerometer_gz', ac2_2);
+                localStorage.removeItem('feet_pose3');
+                localStorage.setItem('feet_pose3', JSON.stringify(pose3));
                 check_visible(ac0_2, ac1_2, ac2_2);
             }
 

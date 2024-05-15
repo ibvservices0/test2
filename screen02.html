@@ -120,10 +120,10 @@
                     'ac2_0': ac2_0
                 };
                 updateFieldIfNotNull('Accelerometer_gx', ac0_0);
-                updateFieldIfNotNull('Accelerometer_gx', ac1_0);
-                updateFieldIfNotNull('Accelerometer_gx', ac2_0);
-                //localStorage.removeItem('feet_pose1');
-                //localStorage.setItem('feet_pose1', JSON.stringify(pose1));
+                updateFieldIfNotNull('Accelerometer_gy', ac1_0);
+                updateFieldIfNotNull('Accelerometer_gz', ac2_0);
+                localStorage.removeItem('feet_pose1');
+                localStorage.setItem('feet_pose1', JSON.stringify(pose1));
                 check_visible(ac0_0, ac1_0, ac2_0);
             }
 
