@@ -60,11 +60,22 @@
 
         <!-- <div id="div_button" hidden="hidden" width="270px" height= "50px">THE-BUTTON</div> -->
         <button id="bt_takePhoto">TOMAR FOTO</button>
+        <br><br>
+        <ul>
+            <li>eje-X: <span id="Accelerometer_gx">0</span><span> m/s<sup>2</sup></span></li>
+            <li>eje-Y: <span id="Accelerometer_gy">0</span><span> m/s<sup>2</sup></span></li>
+            <li>eje-Z: <span id="Accelerometer_gz">0</span><span> m/s<sup>2</sup></span></li>
+        </ul>
         
 
         <script>
 
             var runningAcceleros2 = true;
+
+            function updateFieldIfNotNull(fieldName, value){
+                document.getElementById(fieldName).innerHTML = value;
+            }
+
 
             function check_visible(valueX, valueY, valueZ){
                 let divButton = document.getElementById("div_button");
@@ -105,8 +116,11 @@
                     'ac1_1': ac1_1,
                     'ac2_1': ac2_1
                 };
-                localStorage.removeItem('feet_pose2');
-                localStorage.setItem('feet_pose2', JSON.stringify(pose2));
+                updateFieldIfNotNull('Accelerometer_gx', ac0_1);
+                updateFieldIfNotNull('Accelerometer_gx', ac1_1);
+                updateFieldIfNotNull('Accelerometer_gx', ac2_1);
+                //localStorage.removeItem('feet_pose2');
+                //localStorage.setItem('feet_pose2', JSON.stringify(pose2));
                 check_visible(ac0_1, ac1_1, ac2_1);
             }
 
