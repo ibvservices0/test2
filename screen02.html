@@ -53,13 +53,14 @@
         </div>
 
         <br><br>
-        <div id="div_button" hidden="hidden" width="270px" height= "50px">THE-BUTTON</div>
+        <!-- <div id="div_button" hidden="hidden" width="270px" height= "50px">THE-BUTTON</div> -->
+        <a id="bt_takePhoto" class="btn btn-lg btn-success py-1" href="#" role="button">TOMAR FOTO</a>
         
 
         <script>
 
             function check_visible(valueX, valueY, valueZ){
-                let divButton = document.getElementById("div_button");
+                let btTakePhoto = document.getElementById("bt_takePhoto");
                 var resp_check = false;
                 var anguloX = Math.asin(valueX / -9.8) * 180 / Math.PI;
                 anguloX = Math.abs(anguloX);
@@ -71,8 +72,8 @@
                 if (anguloY > 10){
                     resp_check = false;
                 }
-                if (resp_check) divButton.removeAttribute("hidden");
-                else divButton.setAttribute("hidden", "hidden");
+                if (resp_check) btTakePhoto.removeAttribute("hidden");
+                else btTakePhoto.setAttribute("hidden", "hidden");
             }
 
 
