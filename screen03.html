@@ -64,10 +64,9 @@
 
         <script>
 
-            var runningAcceleros = true;
+            var runningAcceleros2 = true;
 
             function check_visible(valueX, valueY, valueZ){
-                if (runningAcceleros === false){return;}
                 let divButton = document.getElementById("div_button");
                 var resp_check = false;
                 var anguloX = Math.asin(valueX / -9.8) * 180 / Math.PI;
@@ -126,7 +125,7 @@
             document.addEventListener("DOMContentLoaded", () => {
                 let btTakePhoto = document.getElementById("bt_takePhoto");
                 btTakePhoto.addEventListener("click", () => {
-                    runningAcceleros = false;
+                    runningAcceleros2 = false;
                     window.removeEventListener("devicemotion", handleMotion);
                     //tomaFoto();
                 });
