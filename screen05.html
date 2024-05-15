@@ -49,6 +49,23 @@
     <body>
         <div class="topnav">
             <div class="mytitle">API-RECONSTRUCTION</div>
+            <a id="start_action" href="#" role="button">ACCION</a>
         </div>
+
+        <script>
+
+            document.addEventListener("DOMContentLoaded", () => {
+
+                let btAction = document.getElementById("start_action");
+                btAction.onclick = function(e) {
+                    e.preventDefault();
+                    alert('ACCION');
+                };
+
+            });
+
+        </script>
+
+
     </body>
 </html>

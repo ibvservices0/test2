@@ -44,6 +44,12 @@
                 height: 20px;
             }
 
+            button {
+                width: 100%;
+                height: 50px;
+                font-size: 18px;
+            }
+
         </style>
     <body>
         <div class="topnav">
@@ -51,13 +57,16 @@
             <a href="screen05.html">Siguiente</a>
         </div>
 
-        <br><br>
-        <div id="div_button" hidden="hidden" width="270px" height= "50px">THE-BUTTON</div>
+        <!-- <div id="div_button" hidden="hidden" width="270px" height= "50px">THE-BUTTON</div> -->
+        <button id="bt_takePhoto">TOMAR FOTO</button>
         
 
         <script>
 
+            var runningAcceleros = true;
+
             function check_visible(valueX, valueY, valueZ){
+                if (runningAcceleros === false){return;}
                 let divButton = document.getElementById("div_button");
                 var resp_check = false;
                 var anguloX = Math.asin(valueX / -9.8) * 180 / Math.PI;
@@ -91,6 +100,13 @@
                 if (ac2_2_raw.toFixed(10) > 9.8) ac2_2 = 9.8;
                 else if (ac2_2_raw.toFixed(10) < -9.8) ac2_2 = -9.8;
                 else ac2_2 = ac2_2_raw.toFixed(10);
+                let pose3 = {
+                    'ac0_2': ac0_2,
+                    'ac1_2': ac1_2,
+                    'ac2_2': ac2_2
+                };
+                localStorage.removeItem('feet_pose3');
+                localStorage.setItem('feet_pose3', JSON.stringify(pose3));
                 check_visible(ac0_2, ac1_2, ac2_2);
             }
 
@@ -106,7 +122,16 @@
             }
 
 
-            document.addEventListener("DOMContentLoaded", () => {launch_accelerometers();});
+            document.addEventListener("DOMContentLoaded", () => {
+                let btTakePhoto = document.getElementById("bt_takePhoto");
+                btTakePhoto.addEventListener("click", () => {
+                    runningAcceleros = false;
+                    window.removeEventListener("devicemotion", handleMotion);
+                    //tomaFoto();
+                });
+                launch_accelerometers();
+            });
+
 
         </script>
 

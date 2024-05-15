@@ -49,7 +49,7 @@
 
             button {
                 width: 100%;
-                height: 40px;
+                height: 50px;
                 font-size: 18px;
             }
 
@@ -70,7 +70,7 @@
             var runningAcceleros = true;
             
             function check_visible(valueX, valueY, valueZ){
-                //if (runningAcceleros === false){return;}
+                if (runningAcceleros === false){return;}
                 let btTakePhoto2 = document.getElementById("bt_takePhoto");
                 var resp_check = false;
                 var anguloX = Math.asin(valueX / -9.8) * 180 / Math.PI;
@@ -104,8 +104,14 @@
                 if (ac2_0_raw.toFixed(10) > 9.8) ac2_0 = 9.8;
                 else if (ac2_0_raw.toFixed(10) < -9.8) ac2_0 = -9.8;
                 else ac2_0 = ac2_0_raw.toFixed(10);
+                let pose1 = {
+                    'ac0_0': ac0_0,
+                    'ac1_0': ac1_0,
+                    'ac2_0': ac2_0
+                };
+                localStorage.removeItem('feet_pose1');
+                localStorage.setItem('feet_pose1', JSON.stringify(pose1));
                 check_visible(ac0_0, ac1_0, ac2_0);
-                //if (runningAcceleros) {GUARDAR}
             }
 
 
@@ -129,6 +135,7 @@
                 });
                 launch_accelerometers();
             });
+
 
         </script>
 

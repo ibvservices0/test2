@@ -85,6 +85,7 @@
                 .then((respjson) => {
                     if(respjson.access_token){
                         divAutorizando.setAttribute("hidden", "hidden");
+                        localStorage.removeItem('feet_accesstoken');
                         localStorage.setItem('feet_accesstoken', respjson.access_token);
                         divAutorizadoOk.removeAttribute("hidden");
                         //console.log(localStorage.getItem('feet_accesstoken'));
