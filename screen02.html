@@ -103,17 +103,17 @@
                 var ac1_0_raw = event.accelerationIncludingGravity.y;
                 var ac2_0_raw = event.accelerationIncludingGravity.z;
                 var ac0_0 = 0;
-                if (ac0_0_raw.toFixed(10) > 9.8) ac0_0 = 9.8;
-                else if (ac0_0_raw.toFixed(10) < -9.8) ac0_0 = -9.8;
-                else ac0_0 = ac0_0_raw.toFixed(10);
+                if (ac0_0_raw > 9.8) ac0_0 = 9.8;
+                else if (ac0_0_raw < -9.8) ac0_0 = -9.8;
+                else ac0_0 = ac0_0_raw;
                 var ac1_0 = 0;
-                if (ac1_0_raw.toFixed(10) > 9.8) ac1_0 = 9.8;
-                else if (ac1_0_raw.toFixed(10) < -9.8) ac1_0 = -9.8;
-                else ac1_0 = ac1_0_raw.toFixed(10);
+                if (ac1_0_raw > 9.8) ac1_0 = 9.8;
+                else if (ac1_0_raw < -9.8) ac1_0 = -9.8;
+                else ac1_0 = ac1_0_raw;
                 var ac2_0 = 0;
-                if (ac2_0_raw.toFixed(10) > 9.8) ac2_0 = 9.8;
-                else if (ac2_0_raw.toFixed(10) < -9.8) ac2_0 = -9.8;
-                else ac2_0 = ac2_0_raw.toFixed(10);
+                if (ac2_0_raw > 9.8) ac2_0 = 9.8;
+                else if (ac2_0_raw < -9.8) ac2_0 = -9.8;
+                else ac2_0 = ac2_0_raw;
                 let pose1 = {
                     'ac0_0': ac0_0,
                     'ac1_0': ac1_0,
