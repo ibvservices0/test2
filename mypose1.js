@@ -51,7 +51,7 @@ function tomaFoto(){
     //mycanvasBis.getContext('2d').drawImage(videoBis, 0, 0, mycanvasBis.width, mycanvasBis.height);
     let ibmap_options = {
         resizeWidth: 720,
-        resizeHeight: 1280
+        resizeHeight: 960
     };
     createImageBitmap(videoBis, ibmap_options)
         .then(imageBitmap => {verEnCanvas(imageBitmap);})
