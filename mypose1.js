@@ -50,7 +50,7 @@ function tomaFoto(){
     //let mycanvasBis = document.getElementById("thecanvas");
     //mycanvasBis.getContext('2d').drawImage(videoBis, 0, 0, mycanvasBis.width, mycanvasBis.height);
     createImageBitmap(videoBis)
-        .then(imageBitmap => {verEnCanvasBis(imageBitmap);})
+        .then(imageBitmap => {verEnCanvas(imageBitmap);})
         .catch(error => alert(error.message));
 }
 
