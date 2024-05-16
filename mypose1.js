@@ -57,19 +57,19 @@ function tomaFoto(){
 
 function verEnCanvas(img){
     let myvideoBis = document.getElementById("vid");
-    myvideoBis.setAttribute("hidden", "hidden");
+    //myvideoBis.setAttribute("hidden", "hidden");
     let mycanvasBis = document.getElementById("thecanvas");
-    mycanvasBis.removeAttribute("hidden")
+    //mycanvasBis.removeAttribute("hidden")
     mycanvasBis.width = img.width;
     mycanvasBis.height = img.height;
     mycanvasBis.getContext('2d').drawImage(img, 0, 0);
-    mycanvasBis.classList.remove('hidden');
 }
 
 
 function verEnCanvasBis(img){
     let myvideo = document.getElementById("vid");
-    myvideo.setAttribute("hidden", "hidden");
+    //myvideo.setAttribute("hidden", "hidden");
+    myvideo.setAttribute('style', `width: 0px; height: 0px`);
     let mycanvas = document.getElementById("thecanvas");
     mycanvas.removeAttribute("hidden")
     //mycanvas.width = window.screen.width * window.devicePixelRatio;
@@ -83,7 +83,6 @@ function verEnCanvasBis(img){
     let y = (mycanvas.height - img.height * ratio) / 2;
     mycanvas.getContext('2d').clearRect(0, 0, mycanvas.width, mycanvas.height);
     mycanvas.getContext('2d').drawImage(img, 0, 0, img.width, img.height, x, y, img.width * ratio, img.height * ratio);
-    mycanvas.classList.remove('hidden');
 }
 
 
