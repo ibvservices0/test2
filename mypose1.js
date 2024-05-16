@@ -56,7 +56,10 @@ function tomaFoto(){
 
 
 function verEnCanvas(img){
+    let myvideoBis = document.getElementById("vid");
+    myvideoBis.setAttribute("hidden", "hidden");
     let mycanvasBis = document.getElementById("thecanvas");
+    mycanvasBis.removeAttribute("hidden")
     mycanvasBis.width = img.width;
     mycanvasBis.height = img.height;
     mycanvasBis.getContext('2d').drawImage(img, 0, 0);
@@ -65,7 +68,10 @@ function verEnCanvas(img){
 
 
 function verEnCanvasBis(img){
+    let myvideo = document.getElementById("vid");
+    myvideo.setAttribute("hidden", "hidden");
     let mycanvas = document.getElementById("thecanvas");
+    mycanvas.removeAttribute("hidden")
     //mycanvas.width = window.screen.width * window.devicePixelRatio;
     //mycanvas.height = window.screen.height * window.devicePixelRatio;
     mycanvas.width = window.screen.width;
@@ -161,6 +167,9 @@ function gotStream(stream) {
 
 }
 
+
+let canvas = document.getElementById("thecanvas");
+canvas.setAttribute("hidden", "hidden");
 
 let but = document.getElementById("bt_takePhoto");
 but.addEventListener("click", () => {
