@@ -68,8 +68,9 @@ function verEnCanvas(img){
 
 function verEnCanvasBis(img){
     let myvideo = document.getElementById("vid");
-    myvideo.setAttribute("hidden", "hidden");
+    //myvideo.setAttribute("hidden", "hidden");
     //myvideo.setAttribute('style', `width: 0px; height: 0px`);
+    myvideo.style.display = 'none';
     let mycanvas = document.getElementById("thecanvas");
     mycanvas.removeAttribute("hidden")
     //mycanvas.width = window.screen.width * window.devicePixelRatio;
