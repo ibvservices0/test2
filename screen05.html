@@ -52,20 +52,71 @@
             <a id="start_action" href="#" role="button">ACCION</a>
         </div>
 
+        <br><br>
+        <ul>
+            <li>eje-X: <span id="Accelerometer_ac0_0">0</span><span> m/s<sup>2</sup></span></li>
+            <li>eje-Y: <span id="Accelerometer_ac1_0">0</span><span> m/s<sup>2</sup></span></li>
+            <li>eje-Z: <span id="Accelerometer_ac2_0">0</span><span> m/s<sup>2</sup></span></li>
+        </ul>
+        <br><br>
+        <ul>
+            <li>eje-X: <span id="Accelerometer_ac0_1">0</span><span> m/s<sup>2</sup></span></li>
+            <li>eje-Y: <span id="Accelerometer_ac1_1">0</span><span> m/s<sup>2</sup></span></li>
+            <li>eje-Z: <span id="Accelerometer_ac2_1">0</span><span> m/s<sup>2</sup></span></li>
+        </ul>
+        <br><br>
+        <ul>
+            <li>eje-X: <span id="Accelerometer_ac0_2">0</span><span> m/s<sup>2</sup></span></li>
+            <li>eje-Y: <span id="Accelerometer_ac1_2">0</span><span> m/s<sup>2</sup></span></li>
+            <li>eje-Z: <span id="Accelerometer_ac2_2">0</span><span> m/s<sup>2</sup></span></li>
+        </ul>
+
+
+
         <script>
+
+
+            function updateFieldIfNotNull(fieldName, value){
+                document.getElementById(fieldName).innerHTML = value;
+            }
+
+
+            function read_local_acceleros(){
+                let str_accelero_pose1 = localStorage.getItem('feet_pose1');
+                let str_accelero_pose2 = localStorage.getItem('feet_pose2');
+                let str_accelero_pose3 = localStorage.getItem('feet_pose3');
+                let obj_accelero_pose1 = JSON.parse(str_accelero_pose1);
+                let obj_accelero_pose2 = JSON.parse(str_accelero_pose2);
+                let obj_accelero_pose3 = JSON.parse(str_accelero_pose3);
+
+                updateFieldIfNotNull('Accelerometer_ac0_0', obj_accelero_pose1.ac0_0);
+                updateFieldIfNotNull('Accelerometer_ac1_0', obj_accelero_pose1.ac1_0);
+                updateFieldIfNotNull('Accelerometer_ac2_0', obj_accelero_pose1.ac2_0);
+
+                updateFieldIfNotNull('Accelerometer_ac0_1', obj_accelero_pose2.ac0_1);
+                updateFieldIfNotNull('Accelerometer_ac1_1', obj_accelero_pose2.ac1_1);
+                updateFieldIfNotNull('Accelerometer_ac2_1', obj_accelero_pose2.ac2_1);
+
+                updateFieldIfNotNull('Accelerometer_ac0_2', obj_accelero_pose3.ac0_2);
+                updateFieldIfNotNull('Accelerometer_ac1_2', obj_accelero_pose3.ac1_2);
+                updateFieldIfNotNull('Accelerometer_ac2_2', obj_accelero_pose3.ac2_2);
+            }
+
 
             document.addEventListener("DOMContentLoaded", () => {
 
                 let btAction = document.getElementById("start_action");
                 btAction.onclick = function(e) {
                     e.preventDefault();
-                    alert('ACCION');
+                    //alert('ACCION');
                 };
+
+                read_local_acceleros()
 
             });
 
-        </script>
 
+        </script>
 
     </body>
 </html>
