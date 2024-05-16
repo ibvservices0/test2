@@ -99,12 +99,23 @@
             }
 
 
+            function permission_accelerometers(){
+                // Request permission for iOS 13+ devices
+                if (DeviceMotionEvent &&
+                    typeof DeviceMotionEvent.requestPermission === "function") {
+                        DeviceMotionEvent.requestPermission();
+                }
+            }
+
+
             document.addEventListener("DOMContentLoaded", () => {
                 do_authorize();
 
                 let btNext = document.getElementById("next_action");
                 btNext.onclick = function(e) {
                     e.preventDefault();
+                    permission_accelerometers();
+
                     window.location = ('screen02.html') 
                 };
             });
