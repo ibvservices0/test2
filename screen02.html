@@ -142,11 +142,12 @@
             document.addEventListener("DOMContentLoaded", () => {
                 let btTakePhoto = document.getElementById("bt_takePhoto");
                 btTakePhoto.addEventListener("click", () => {
-                    runningAcceleros1 = false;
-                    window.removeEventListener("devicemotion", handleMotion);
-                    //tomaFoto();
+                    //runningAcceleros1 = false;
+                    //window.removeEventListener("devicemotion", handleMotion);
+
+                    launch_accelerometers();
                 });
-                launch_accelerometers();
+                //launch_accelerometers();
             });
 
 
