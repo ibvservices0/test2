@@ -49,28 +49,17 @@ function tomaFoto(){
     let videoBis = document.getElementById("vid");
     //let mycanvasBis = document.getElementById("thecanvas");
     //mycanvasBis.getContext('2d').drawImage(videoBis, 0, 0, mycanvasBis.width, mycanvasBis.height);
-    createImageBitmap(videoBis)
+    let ibmap_options = {
+        resizeWidth: 720,
+        resizeHeight: 1280
+    };
+    createImageBitmap(videoBis, ibmap_options)
         .then(imageBitmap => {verEnCanvas(imageBitmap);})
         .catch(error => alert(error.message));
 }
 
 
 function verEnCanvas(img){
-    let mydivBis_takePhoto = document.getElementById("div_takePhoto");
-    mydivBis_takePhoto.style.display = 'none';
-    let mydivBis_vid = document.getElementById("div_vid");
-    mydivBis_vid.style.display = 'none';
-
-    let mycanvasBis = document.getElementById("thecanvas");
-    mycanvasBis.removeAttribute("hidden");
-    
-    mycanvasBis.width = img.width;
-    mycanvasBis.height = img.height;
-    mycanvasBis.getContext('2d').drawImage(img, 0, 0);
-}
-
-
-function verEnCanvasBis(img){
     let mydiv_takePhoto = document.getElementById("div_takePhoto");
     mydiv_takePhoto.style.display = 'none';
     let mydiv_vid = document.getElementById("div_vid");
@@ -79,17 +68,32 @@ function verEnCanvasBis(img){
     let mycanvas = document.getElementById("thecanvas");
     mycanvas.removeAttribute("hidden");
     
-    //mycanvas.width = window.screen.width * window.devicePixelRatio;
-    //mycanvas.height = window.screen.height * window.devicePixelRatio;
-    mycanvas.width = window.screen.width;
-    mycanvas.height = window.screen.height;
-    //mycanvas.width = window.getComputedStyle(...).width.split('px')[0];
-    //mycanvas.height = window.getComputedStyle(...).height.split('px')[0];
-    let ratio  = Math.min(mycanvas.width / img.width, mycanvas.height / img.height);
-    let x = (mycanvas.width - img.width * ratio) / 2;
-    let y = (mycanvas.height - img.height * ratio) / 2;
-    mycanvas.getContext('2d').clearRect(0, 0, mycanvas.width, mycanvas.height);
-    mycanvas.getContext('2d').drawImage(img, 0, 0, img.width, img.height, x, y, img.width * ratio, img.height * ratio);
+    mycanvas.width = img.width;
+    mycanvas.height = img.height;
+    mycanvas.getContext('2d').drawImage(img, 0, 0);
+}
+
+
+function verEnCanvasBis(img){
+    let mydivBis_takePhoto = document.getElementById("div_takePhoto");
+    mydivBis_takePhoto.style.display = 'none';
+    let mydivBis_vid = document.getElementById("div_vid");
+    mydivBis_vid.style.display = 'none';
+
+    let mycanvasBis = document.getElementById("thecanvas");
+    mycanvasBis.removeAttribute("hidden");
+    
+    //mycanvasBis.width = window.screen.width * window.devicePixelRatio;
+    //mycanvasBis.height = window.screen.height * window.devicePixelRatio;
+    mycanvasBis.width = window.screen.width;
+    mycanvasBis.height = window.screen.height;
+    //mycanvasBis.width = window.getComputedStyle(...).width.split('px')[0];
+    //mycanvasBis.height = window.getComputedStyle(...).height.split('px')[0];
+    let ratio  = Math.min(mycanvasBis.width / img.width, mycanvasBis.height / img.height);
+    let x = (mycanvasBis.width - img.width * ratio) / 2;
+    let y = (mycanvasBis.height - img.height * ratio) / 2;
+    mycanvasBis.getContext('2d').clearRect(0, 0, mycanvasBis.width, mycanvasBis.height);
+    mycanvasBis.getContext('2d').drawImage(img, 0, 0, img.width, img.height, x, y, img.width * ratio, img.height * ratio);
 }
 
 
