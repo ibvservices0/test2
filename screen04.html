@@ -134,7 +134,7 @@
                 window.addEventListener("devicemotion", handleMotion);
             }
 
-
+            /*
             document.addEventListener("DOMContentLoaded", () => {
                 let btTakePhoto = document.getElementById("bt_takePhoto");
                 btTakePhoto.addEventListener("click", () => {
@@ -144,6 +144,17 @@
                 });
                 launch_accelerometers();
             });
+            */
+
+            let btTakePhoto = document.getElementById("bt_takePhoto");
+
+            btTakePhoto.addEventListener("click", () => {
+                runningAcceleros3 = false;
+                window.removeEventListener("devicemotion", handleMotion);
+                //tomaFoto();
+            });
+
+            launch_accelerometers();
 
 
         </script>
