@@ -123,18 +123,7 @@
                 check_visible(ac0_2, ac1_2, ac2_2);
             }
 
-
-            function launch_accelerometers(){
-                // Request permission for iOS 13+ devices
-                if (DeviceMotionEvent &&
-                    typeof DeviceMotionEvent.requestPermission === "function") {
-                        DeviceMotionEvent.requestPermission();
-                }
-
-                window.addEventListener("devicemotion", handleMotion);
-            }
-
-            /*
+            
             document.addEventListener("DOMContentLoaded", () => {
                 let btTakePhoto = document.getElementById("bt_takePhoto");
                 btTakePhoto.addEventListener("click", () => {
@@ -142,19 +131,8 @@
                     window.removeEventListener("devicemotion", handleMotion);
                     //tomaFoto();
                 });
-                launch_accelerometers();
+                window.addEventListener("devicemotion", handleMotion);
             });
-            */
-
-            let btTakePhoto = document.getElementById("bt_takePhoto");
-
-            btTakePhoto.addEventListener("click", () => {
-                runningAcceleros3 = false;
-                window.removeEventListener("devicemotion", handleMotion);
-                //tomaFoto();
-            });
-
-            launch_accelerometers();
 
 
         </script>

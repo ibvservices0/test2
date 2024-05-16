@@ -49,8 +49,7 @@
     <body>
         <div class="topnav">
             <div class="mytitle">API-AUTHORIZE</div>
-            <!-- <a href="screen02.html">Siguiente</a> -->
-            <a id="next_action" href="#" role="button">Siguiente</a>
+            <a href="screen02.html">Siguiente</a>
         </div>
 
         <div id="div_autorizando" hidden="hidden" width="270px" height= "50px">Autorizando...</div>
@@ -99,25 +98,8 @@
             }
 
 
-            function permission_accelerometers(){
-                // Request permission for iOS 13+ devices
-                if (DeviceMotionEvent &&
-                    typeof DeviceMotionEvent.requestPermission === "function") {
-                        DeviceMotionEvent.requestPermission();
-                }
-            }
-
-
             document.addEventListener("DOMContentLoaded", () => {
                 do_authorize();
-
-                let btNext = document.getElementById("next_action");
-                btNext.onclick = function(e) {
-                    e.preventDefault();
-                    permission_accelerometers();
-
-                    window.location = ('screen02.html') 
-                };
             });
 
         </script>

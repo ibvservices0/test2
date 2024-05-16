@@ -49,7 +49,30 @@
     <body>
         <div class="topnav">
             <div class="mytitle">CAMERA-FEET</div>
-            <a href="screen01.html">Siguiente31</a>
+            <!--<a href="screen01.html">Siguiente32</a>-->
+            <a id="next_action" href="#" role="button">Siguiente32</a>
         </div>
+
+        <script>
+
+            function permission_accelerometers(){
+                // Request permission for iOS 13+ devices
+                if (DeviceMotionEvent &&
+                    typeof DeviceMotionEvent.requestPermission === "function") {
+                        DeviceMotionEvent.requestPermission();
+                }
+            }
+
+            document.addEventListener("DOMContentLoaded", () => {
+                let btNext = document.getElementById("next_action");
+                btNext.onclick = function(e) {
+                    e.preventDefault();
+                    permission_accelerometers();
+                    window.location = ('screen01.html') 
+                };
+            });
+
+        </script>
+
     </body>
 </html>
