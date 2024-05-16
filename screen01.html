@@ -49,7 +49,8 @@
     <body>
         <div class="topnav">
             <div class="mytitle">API-AUTHORIZE</div>
-            <a href="screen02.html">Siguiente</a>
+            <!-- <a href="screen02.html">Siguiente</a> -->
+            <a id="next_action" href="#" role="button">Siguiente</a>
         </div>
 
         <div id="div_autorizando" hidden="hidden" width="270px" height= "50px">Autorizando...</div>
@@ -98,7 +99,15 @@
             }
 
 
-            document.addEventListener("DOMContentLoaded", () => {do_authorize();});
+            document.addEventListener("DOMContentLoaded", () => {
+                do_authorize();
+
+                let btNext = document.getElementById("next_action");
+                btNext.onclick = function(e) {
+                    e.preventDefault();
+                    window.location = ('screen02.html') 
+                };
+            });
 
         </script>
 
