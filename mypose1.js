@@ -56,10 +56,14 @@ function tomaFoto(){
 
 
 function verEnCanvas(img){
+    let mybuttonBis = document.getElementById("bt_takePhoto");
+    mybuttonBis.style.display = 'none';
+    let mycanvasBis = document.getElementById("thecanvas");
+    mycanvasBis.removeAttribute("hidden");
     let myvideoBis = document.getElementById("vid");
     //myvideoBis.setAttribute("hidden", "hidden");
-    let mycanvasBis = document.getElementById("thecanvas");
-    //mycanvasBis.removeAttribute("hidden")
+    myvideoBis.style.display = 'none';
+    
     mycanvasBis.width = img.width;
     mycanvasBis.height = img.height;
     mycanvasBis.getContext('2d').drawImage(img, 0, 0);
@@ -67,12 +71,15 @@ function verEnCanvas(img){
 
 
 function verEnCanvasBis(img){
+    let mybutton = document.getElementById("bt_takePhoto");
+    mybutton.style.display = 'none';
+    let mycanvas = document.getElementById("thecanvas");
+    mycanvas.removeAttribute("hidden");
     let myvideo = document.getElementById("vid");
     //myvideo.setAttribute("hidden", "hidden");
     //myvideo.setAttribute('style', `width: 0px; height: 0px`);
     myvideo.style.display = 'none';
-    let mycanvas = document.getElementById("thecanvas");
-    mycanvas.removeAttribute("hidden")
+
     //mycanvas.width = window.screen.width * window.devicePixelRatio;
     //mycanvas.height = window.screen.height * window.devicePixelRatio;
     mycanvas.width = window.screen.width;
