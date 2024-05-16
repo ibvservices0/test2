@@ -63,83 +63,17 @@
 
         <!-- <div id="div_button" hidden="hidden" width="270px" height= "50px">THE-BUTTON</div> -->
         <button id="bt_takePhoto">TOMAR FOTO</button>
-        <br><br>
-        <ul>
-            <li>eje-X: <span id="Accelerometer_gx">0</span><span> m/s<sup>2</sup></span></li>
-            <li>eje-Y: <span id="Accelerometer_gy">0</span><span> m/s<sup>2</sup></span></li>
-            <li>eje-Z: <span id="Accelerometer_gz">0</span><span> m/s<sup>2</sup></span></li>
-        </ul>
+
+        <!-- autoPlay + playsInline TRUE es obligatorio para que funcione en iOS-->
+        <div>
+            <video width="270px" height= "480px" id="vid" autoPlay="true" muted="true" playsInline="true"></video>
+        </div>
+        <br>
+        <canvas class="hidden" id="thecanvas"></canvas>
         
 
-        <script>
-
-            var runningAcceleros1 = true;
-
-            function updateFieldIfNotNull(fieldName, value){
-                document.getElementById(fieldName).innerHTML = value;
-            }
-            
-
-            function check_visible(valueX, valueY, valueZ){
-                let btTakePhoto2 = document.getElementById("bt_takePhoto");
-                var resp_check = false;
-                var anguloX = Math.asin(valueX / -9.8) * 180 / Math.PI;
-                anguloX = Math.abs(anguloX);
-                if ((anguloX >= 30) && (anguloX <= 50)){
-                    resp_check = true;
-                }
-                var anguloY = Math.asin(valueY / -9.8) * 180 / Math.PI;
-                anguloY = Math.abs(anguloY);
-                if (anguloY > 10){
-                    resp_check = false;
-                }
-                if (resp_check) btTakePhoto2.removeAttribute("hidden");
-                else btTakePhoto2.setAttribute("hidden", "hidden");
-            }
-
-
-            function handleMotion(event) {
-                var ac0_0_raw = event.accelerationIncludingGravity.x;
-                var ac1_0_raw = event.accelerationIncludingGravity.y;
-                var ac2_0_raw = event.accelerationIncludingGravity.z;
-                var ac0_0 = 0;
-                if (ac0_0_raw > 9.8) ac0_0 = 9.8;
-                else if (ac0_0_raw < -9.8) ac0_0 = -9.8;
-                else ac0_0 = ac0_0_raw;
-                var ac1_0 = 0;
-                if (ac1_0_raw > 9.8) ac1_0 = 9.8;
-                else if (ac1_0_raw < -9.8) ac1_0 = -9.8;
-                else ac1_0 = ac1_0_raw;
-                var ac2_0 = 0;
-                if (ac2_0_raw > 9.8) ac2_0 = 9.8;
-                else if (ac2_0_raw < -9.8) ac2_0 = -9.8;
-                else ac2_0 = ac2_0_raw;
-                let pose1 = {
-                    'ac0_0': ac0_0,
-                    'ac1_0': ac1_0,
-                    'ac2_0': ac2_0
-                };
-                updateFieldIfNotNull('Accelerometer_gx', ac0_0);
-                updateFieldIfNotNull('Accelerometer_gy', ac1_0);
-                updateFieldIfNotNull('Accelerometer_gz', ac2_0);
-                localStorage.removeItem('feet_pose1');
-                localStorage.setItem('feet_pose1', JSON.stringify(pose1));
-                check_visible(ac0_0, ac1_0, ac2_0);
-            }
-
-
-            document.addEventListener("DOMContentLoaded", () => {
-                let btTakePhoto = document.getElementById("bt_takePhoto");
-                btTakePhoto.addEventListener("click", () => {
-                    runningAcceleros1 = false;
-                    window.removeEventListener("devicemotion", handleMotion);
-                    //tomaFoto();
-                });
-                window.addEventListener("devicemotion", handleMotion);
-            });
-
-
-        </script>
+        <!-- <script></script> -->
+        <script src="mypose1.js"></script>
 
     </body>
 </html>
