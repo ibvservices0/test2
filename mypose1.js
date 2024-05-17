@@ -58,6 +58,9 @@ function tomaFoto(){
         .catch(error => alert(error.message));
 }
 
+const getBase64StringFromDataURL = (dataURL) =>
+    dataURL.replace('data:', '').replace(/^.+,/, '');
+
 
 function verEnCanvas(img){
     let mydiv_takePhoto = document.getElementById("div_takePhoto");
@@ -72,17 +75,24 @@ function verEnCanvas(img){
     mycanvas.height = img.height;
     mycanvas.getContext('2d').clearRect(0, 0, mycanvas.width, mycanvas.height);
     mycanvas.getContext('2d').drawImage(img, 0, 0);
+
+    const the_dataURL = mycanvas.toDataURL('image/jpeg', 0.9);;
+    // Logs data:image/png;base64,wL2dvYWwgbW9yZ...
+    const the_base64 = getBase64StringFromDataURL(the_dataURL);
+    // Logs wL2dvYWwgbW9yZ...
+    localStorage.removeItem('feet_photo1');
+    localStorage.setItem('feet_photo1', the_base64);
+    verEnCanvasBis(img);
 }
 
 
-function verEnCanvasBis(img){
-    let mydivBis_takePhoto = document.getElementById("div_takePhoto");
-    mydivBis_takePhoto.style.display = 'none';
-    let mydivBis_vid = document.getElementById("div_vid");
-    mydivBis_vid.style.display = 'none';
-
-    let mycanvasBis = document.getElementById("thecanvas");
-    mycanvasBis.removeAttribute("hidden");
+function verEnCanvasBis(img2){
+    //let mydivBis_takePhoto = document.getElementById("div_takePhoto");
+    //mydivBis_takePhoto.style.display = 'none';
+    //let mydivBis_vid = document.getElementById("div_vid");
+    //mydivBis_vid.style.display = 'none';
+    //let mycanvasBis = document.getElementById("thecanvas");
+    //mycanvasBis.removeAttribute("hidden");
     
     //mycanvasBis.width = window.screen.width * window.devicePixelRatio;
     //mycanvasBis.height = window.screen.height * window.devicePixelRatio;
@@ -90,11 +100,11 @@ function verEnCanvasBis(img){
     mycanvasBis.height = window.screen.height;
     //mycanvasBis.width = window.getComputedStyle(...).width.split('px')[0];
     //mycanvasBis.height = window.getComputedStyle(...).height.split('px')[0];
-    let ratio  = Math.min(mycanvasBis.width / img.width, mycanvasBis.height / img.height);
-    let x = (mycanvasBis.width - img.width * ratio) / 2;
-    let y = (mycanvasBis.height - img.height * ratio) / 2;
+    let ratio  = Math.min(mycanvasBis.width / img2.width, mycanvasBis.height / img2.height);
+    let x = (mycanvasBis.width - img2.width * ratio) / 2;
+    let y = (mycanvasBis.height - img2.height * ratio) / 2;
     mycanvasBis.getContext('2d').clearRect(0, 0, mycanvasBis.width, mycanvasBis.height);
-    mycanvasBis.getContext('2d').drawImage(img, 0, 0, img.width, img.height, x, y, img.width * ratio, img.height * ratio);
+    mycanvasBis.getContext('2d').drawImage(img2, 0, 0, img2.width, img2.height, x, y, img2.width * ratio, img2.height * ratio);
 }
 
 
