@@ -70,6 +70,7 @@ function verEnCanvas(img){
     
     mycanvas.width = img.width;
     mycanvas.height = img.height;
+    mycanvas.getContext('2d').clearRect(0, 0, mycanvas.width, mycanvas.height);
     mycanvas.getContext('2d').drawImage(img, 0, 0);
 }
 
