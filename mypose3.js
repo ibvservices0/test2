@@ -76,7 +76,7 @@ function verEnCanvas(img){
     mycanvas.getContext('2d').clearRect(0, 0, mycanvas.width, mycanvas.height);
     mycanvas.getContext('2d').drawImage(img, 0, 0);
 
-    const the_dataURL = mycanvas.toDataURL('image/jpeg', 0.9);;
+    const the_dataURL = mycanvas.toDataURL('image/jpeg', 1.0);;
     // Logs data:image/png;base64,wL2dvYWwgbW9yZ...
     const the_base64 = getBase64StringFromDataURL(the_dataURL);
     // Logs wL2dvYWwgbW9yZ...
