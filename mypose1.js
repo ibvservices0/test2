@@ -91,7 +91,7 @@ function verEnCanvasBis(img2){
     //mydivBis_takePhoto.style.display = 'none';
     //let mydivBis_vid = document.getElementById("div_vid");
     //mydivBis_vid.style.display = 'none';
-    //let mycanvasBis = document.getElementById("thecanvas");
+    let mycanvasBis = document.getElementById("thecanvas");
     //mycanvasBis.removeAttribute("hidden");
     
     //mycanvasBis.width = window.screen.width * window.devicePixelRatio;
