@@ -51,12 +51,16 @@
                 color: white;
             }
 
-            button {
+            .mybutton {
                 width: 100%;
                 height: 50px;
                 font-size: 18px;
-                color: blue;
             }
+
+            .mybutton:disabled {
+                background-color: #FFFFFF;
+            }
+
 
         </style>
     </head>
@@ -70,7 +74,7 @@
 
                 
         <div id="div_takePhoto">
-            <button id="bt_takePhoto">TOMAR FOTO</button>
+            <button class="mybutton" id="bt_takePhoto">TOMAR FOTO</button>
         </div>
         <div id="div_vid">
             <video id="vid" width="270px" height= "480px" autoPlay="true" muted="true" playsInline="true"></video>
