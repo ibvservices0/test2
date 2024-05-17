@@ -14,8 +14,8 @@ function check_visible(valueX, valueY, valueZ){
     if (anguloY > 10){
         resp_check = false;
     }
-    if (resp_check) btTakePhoto2.removeAttribute("hidden");
-    else btTakePhoto2.setAttribute("hidden", "hidden");
+    if (resp_check) btTakePhoto2.removeAttribute("disabled");
+    else btTakePhoto2.setAttribute("disabled", "");;
 }
 
 function handleMotion(event) {
