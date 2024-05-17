@@ -7,19 +7,32 @@
         <style>
             h1 {margin-top: 0.5rem; color: grey;}
 
-            /* Add a black background color to the top navigation */
+            .topnav_outer{
+                width:100%;
+                height: 50px;
+                display : flex;
+                align-items : center;
+                background-color: #333;
+            }
             .topnav {
+                width:100%;
+                height: 30px;
                 background-color: #333;
                 overflow: hidden;
+                height: 30px;
             }
-
+            .myelement {
+                color: #04AA6D;
+                width: 50%;
+                display: inline-block;
+                height: 30px;
+            }
             /* Style the links inside the navigation bar */
             .topnav a {
                 float: right;
                 color: #f2f2f2;
-                text-align: center;
-                padding: 14px 16px;
                 text-decoration: none;
+                text-align: right;
                 font-size: 17px;
             }
 
@@ -35,26 +48,28 @@
                 color: white;
             }
 
-
-            .mytitle {
-                color: #04AA6D;
-                background-color: #333;
-                float: left;
-                width: 300px;
-                height: 20px;
+            .div_message {
+                width: 100%;
+                height: 50px;
+                font-size: 17px;
+                text-align: center;
             }
+
 
         </style>
     </head>
     <body>
-        <div class="topnav">
-            <div class="mytitle">API-AUTHORIZE</div>
-            <a href="screen02.html">Siguiente</a>
+        <div class="topnav_outer">
+            <div class="topnav">
+                <span class="myelement">API-AUTHORIZE</span>
+                <a class="myelement" href="screen02.html">Siguiente</a>
+            </div>
         </div>
 
-        <div id="div_autorizando" hidden="hidden" width="270px" height= "50px">Autorizando...</div>
-        <div id="div_autorizado_ok" width="270px" height= "50px">Autorizado OK</div>
-        <div id="div_autorizado_error" width="270px" height= "50px">ERROR en autorización</div>
+
+        <div class="div_message" id="div_autorizando" hidden="hidden">Autorizando...</div>
+        <div class="div_message" id="div_autorizado_ok">Autorizado OK</div>
+        <div class="div_message" id="div_autorizado_error">ERROR en autorización</div>
 
         <script>
 
