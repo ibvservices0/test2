@@ -19,21 +19,21 @@ function check_visible(valueX, valueY, valueZ){
 }
 
 function handleMotion(event) {
-    var ac0_0_raw = event.accelerationIncludingGravity.x;
-    var ac1_0_raw = event.accelerationIncludingGravity.y;
-    var ac2_0_raw = event.accelerationIncludingGravity.z;
+    var acx_raw = event.accelerationIncludingGravity.x;
+    var acy_raw = event.accelerationIncludingGravity.y;
+    var acz_raw = event.accelerationIncludingGravity.z;
     var ac0_0 = 0;
-    if (ac0_0_raw > 9.8) ac0_0 = 9.8;
-    else if (ac0_0_raw < -9.8) ac0_0 = -9.8;
-    else ac0_0 = ac0_0_raw;
+    if (acx_raw > 9.8) ac0_0 = 9.8;
+    else if (acx_raw < -9.8) ac0_0 = -9.8;
+    else ac0_0 = acx_raw;
     var ac1_0 = 0;
-    if (ac1_0_raw > 9.8) ac1_0 = 9.8;
-    else if (ac1_0_raw < -9.8) ac1_0 = -9.8;
-    else ac1_0 = ac1_0_raw;
+    if (acy_raw > 9.8) ac1_0 = 9.8;
+    else if (acy_raw < -9.8) ac1_0 = -9.8;
+    else ac1_0 = acy_raw;
     var ac2_0 = 0;
-    if (ac2_0_raw > 9.8) ac2_0 = 9.8;
-    else if (ac2_0_raw < -9.8) ac2_0 = -9.8;
-    else ac2_0 = ac2_0_raw;
+    if (acz_raw > 9.8) ac2_0 = 9.8;
+    else if (acz_raw < -9.8) ac2_0 = -9.8;
+    else ac2_0 = acz_raw;
     let pose1 = {
         'ac0_0': ac0_0,
         'ac1_0': ac1_0,

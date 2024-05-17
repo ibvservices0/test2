@@ -48,10 +48,21 @@
                 color: white;
             }
 
-            button {
+            .mybutton {
                 width: 100%;
                 height: 50px;
                 font-size: 18px;
+                background-color: #0000FF;
+                color: white;
+            }
+
+            .mybutton:disabled {
+                background-color: #FFFFFF;
+            }
+
+            video {
+                width: 100%;
+                height: 80%;
             }
 
         </style>
@@ -63,85 +74,19 @@
             </div>
         </div>
 
-        <!-- <div id="div_button" hidden="hidden" width="270px" height= "50px">THE-BUTTON</div> -->
-        <button id="bt_takePhoto">TOMAR FOTO</button>
-        <br><br>
-        <ul>
-            <li>eje-X: <span id="Accelerometer_gx">0</span><span> m/s<sup>2</sup></span></li>
-            <li>eje-Y: <span id="Accelerometer_gy">0</span><span> m/s<sup>2</sup></span></li>
-            <li>eje-Z: <span id="Accelerometer_gz">0</span><span> m/s<sup>2</sup></span></li>
-        </ul>
+        <div id="div_takePhoto">
+            <button class="mybutton" id="bt_takePhoto">TOMAR FOTO</button>
+        </div>
+        <div id="div_vid">
+            <video id="vid" autoPlay="true" muted="true" playsInline="true"></video>
+        </div>
+        <div id="div_thecanvas">
+            <canvas id="thecanvas"></canvas>
+        </div>
         
 
-        <script>
-
-            var runningAcceleros3 = true;
-
-            function updateFieldIfNotNull(fieldName, value){
-                document.getElementById(fieldName).innerHTML = value;
-            }
-
-
-            function check_visible(valueX, valueY, valueZ){
-                let btTakePhoto2 = document.getElementById("bt_takePhoto");
-                var resp_check = false;
-                var anguloX = Math.asin(valueX / -9.8) * 180 / Math.PI;
-                anguloX = Math.abs(anguloX);
-                if ((anguloX >= 30) && (anguloX <= 50)){
-                    resp_check = true;
-                }
-                var anguloY = Math.asin(valueY / -9.8) * 180 / Math.PI;
-                anguloY = Math.abs(anguloY);
-                if (anguloY > 10){
-                    resp_check = false;
-                }
-                if (resp_check) btTakePhoto2.removeAttribute("hidden");
-                else btTakePhoto2.setAttribute("hidden", "hidden");
-            }
-
-
-            function handleMotion(event) {
-                var ac0_2_raw = event.accelerationIncludingGravity.x;
-                var ac1_2_raw = event.accelerationIncludingGravity.y;
-                var ac2_2_raw = event.accelerationIncludingGravity.z;
-                var ac0_2 = 0;
-                if (ac0_2_raw > 9.8) ac0_2 = 9.8;
-                else if (ac0_2_raw < -9.8) ac0_2 = -9.8;
-                else ac0_2 = ac0_2_raw;
-                var ac1_2 = 0;
-                if (ac1_2_raw > 9.8) ac1_2 = 9.8;
-                else if (ac1_2_raw < -9.8) ac1_2 = -9.8;
-                else ac1_2 = ac1_2_raw;
-                var ac2_2 = 0;
-                if (ac2_2_raw > 9.8) ac2_2 = 9.8;
-                else if (ac2_2_raw < -9.8) ac2_2 = -9.8;
-                else ac2_2 = ac2_2_raw;
-                let pose3 = {
-                    'ac0_2': ac0_2,
-                    'ac1_2': ac1_2,
-                    'ac2_2': ac2_2
-                };
-                updateFieldIfNotNull('Accelerometer_gx', ac0_2);
-                updateFieldIfNotNull('Accelerometer_gy', ac1_2);
-                updateFieldIfNotNull('Accelerometer_gz', ac2_2);
-                localStorage.removeItem('feet_pose3');
-                localStorage.setItem('feet_pose3', JSON.stringify(pose3));
-                check_visible(ac0_2, ac1_2, ac2_2);
-            }
-
-            
-            document.addEventListener("DOMContentLoaded", () => {
-                let btTakePhoto = document.getElementById("bt_takePhoto");
-                btTakePhoto.addEventListener("click", () => {
-                    runningAcceleros3 = false;
-                    window.removeEventListener("devicemotion", handleMotion);
-                    //tomaFoto();
-                });
-                window.addEventListener("devicemotion", handleMotion);
-            });
-
-
-        </script>
+        <!-- <script></script> -->
+        <script src="mypose3.js"></script>
 
     </body>
 </html>
