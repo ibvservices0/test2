@@ -59,25 +59,30 @@
             </div>
         </div>
 
-        <br><br>
-        <ul>
+        <!--
+        <br><br><ul>
             <li>eje-X: <span id="Accelerometer_ac0_0">0</span><span> m/s<sup>2</sup></span></li>
             <li>eje-Y: <span id="Accelerometer_ac1_0">0</span><span> m/s<sup>2</sup></span></li>
             <li>eje-Z: <span id="Accelerometer_ac2_0">0</span><span> m/s<sup>2</sup></span></li>
-        </ul>
-        <br><br>
-        <ul>
+        </ul><br><br><ul>
             <li>eje-X: <span id="Accelerometer_ac0_1">0</span><span> m/s<sup>2</sup></span></li>
             <li>eje-Y: <span id="Accelerometer_ac1_1">0</span><span> m/s<sup>2</sup></span></li>
             <li>eje-Z: <span id="Accelerometer_ac2_1">0</span><span> m/s<sup>2</sup></span></li>
-        </ul>
-        <br><br>
-        <ul>
+        </ul><br><br><ul>
             <li>eje-X: <span id="Accelerometer_ac0_2">0</span><span> m/s<sup>2</sup></span></li>
             <li>eje-Y: <span id="Accelerometer_ac1_2">0</span><span> m/s<sup>2</sup></span></li>
             <li>eje-Z: <span id="Accelerometer_ac2_2">0</span><span> m/s<sup>2</sup></span></li>
         </ul>
+        -->
 
+        <br><br><ul>
+            <li>eje-X: <span id="response_error_code">Error Or Correct</span></li>
+        </ul><br><br><ul>
+            <li>eje-Z: <span id="response_sheet_eval">SHEET-EVAL</span></li>
+            <li>eje-X: <span id="response_info">INFO</span></li>
+            <li>eje-Y: <span id="response_quality">QUALITY</span></li>
+            <li>eje-Z: <span id="response_request_code">REQUEST-CODE</span></li>
+        </ul>
 
 
         <script>
@@ -95,18 +100,113 @@
                 let obj_accelero_pose1 = JSON.parse(str_accelero_pose1);
                 let obj_accelero_pose2 = JSON.parse(str_accelero_pose2);
                 let obj_accelero_pose3 = JSON.parse(str_accelero_pose3);
-
+                /*
                 updateFieldIfNotNull('Accelerometer_ac0_0', obj_accelero_pose1.ac0_0);
                 updateFieldIfNotNull('Accelerometer_ac1_0', obj_accelero_pose1.ac1_0);
                 updateFieldIfNotNull('Accelerometer_ac2_0', obj_accelero_pose1.ac2_0);
-
                 updateFieldIfNotNull('Accelerometer_ac0_1', obj_accelero_pose2.ac0_1);
                 updateFieldIfNotNull('Accelerometer_ac1_1', obj_accelero_pose2.ac1_1);
                 updateFieldIfNotNull('Accelerometer_ac2_1', obj_accelero_pose2.ac2_1);
-
                 updateFieldIfNotNull('Accelerometer_ac0_2', obj_accelero_pose3.ac0_2);
                 updateFieldIfNotNull('Accelerometer_ac1_2', obj_accelero_pose3.ac1_2);
                 updateFieldIfNotNull('Accelerometer_ac2_2', obj_accelero_pose3.ac2_2);
+                */
+            }
+
+
+
+            function do_apiReconstruction(){
+
+                let token_bearer = localStorage.getItem('feet_accesstoken');
+
+                let str_accelero_pose1 = localStorage.getItem('feet_pose1');
+                let str_accelero_pose2 = localStorage.getItem('feet_pose2');
+                let str_accelero_pose3 = localStorage.getItem('feet_pose3');
+                let obj_accelero_pose1 = JSON.parse(str_accelero_pose1);
+                let obj_accelero_pose2 = JSON.parse(str_accelero_pose2);
+                let obj_accelero_pose3 = JSON.parse(str_accelero_pose3);
+
+                let str64_photo1 = localStorage.getItem('feet_photo1');
+                let str64_photo2 = localStorage.getItem('feet_photo2');
+                let str64_photo3 = localStorage.getItem('feet_photo3');
+
+                let input1_content = {
+                    sheet_model: 1,
+                    foot_type: 2,
+                    ac0_0: obj_accelero_pose1.ac0_0,
+                    ac1_0: obj_accelero_pose1.ac1_0,
+                    ac2_0: obj_accelero_pose1.ac2_0,
+                    ac0_1: obj_accelero_pose2.ac0_1,
+                    ac1_1: obj_accelero_pose2.ac1_1,
+                    ac2_1: obj_accelero_pose2.ac2_1,
+                    ac0_2: obj_accelero_pose3.ac0_2,
+                    ac1_2: obj_accelero_pose3.ac1_2,
+                    ac2_2: obj_accelero_pose3.ac2_2
+                };
+
+                let str_input1_content = JSON.stringify(input1_content);
+                let base64_input1_content = btoa(str_input1_content);
+
+                let obj_input1 = {
+                    extension: 'json',
+                    content_file: base64_input1_content
+                };
+                let obj_input2 = {
+                    extension: 'jpg',
+                    content_file: str64_photo1
+                };
+                let obj_input3 = {
+                    extension: 'jpg',
+                    content_file: str64_photo2
+                };
+                let obj_input4 = {
+                    extension: 'jpg',
+                    content_file: str64_photo3
+                };
+
+                let obj_files = {
+                    input1: obj_input1,
+                    input2: obj_input2,
+                    input3: obj_input3,
+                    input4: obj_input4
+                }
+                let obj_parameters = {
+                    request_code: ''
+                };
+
+                let str_auth = 'Bearer ' + token_bearer;
+
+                fetch("https://avatar3ddev.ibv.org/api/v1/auth/reconstrucion", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        files: obj_files,
+                        parameters: obj_parameters
+                    }),
+                    headers: {
+                        'Content-type': 'application/json',
+                        'Authorization': str_auth
+                    }
+                })
+                .then((response) => response.json())
+                .then((respjson) => {
+                    if(respjson.error_code){
+                        updateFieldIfNotNull('response_error_code', JSON.stringify(respjson.error_code));
+                    }
+                    if (respjson.sheet_eval){
+                        updateFieldIfNotNull('response_sheet_eval', respjson.sheet_eval);
+                    }
+                    if (respjson.info){
+                        updateFieldIfNotNull('response_info', respjson.info);
+                    }
+                    if (respjson.quality){
+                        updateFieldIfNotNull('response_quality', respjson.quality);
+                    }
+                    if (respjson.request_code){
+                        updateFieldIfNotNull('response_request_code', respjson.request_code);
+                    }
+                    
+                });
+
             }
 
 
@@ -116,9 +216,10 @@
                 btAction.onclick = function(e) {
                     e.preventDefault();
                     //alert('ACCION');
+                    do_apiReconstruction();
                 };
 
-                read_local_acceleros()
+                //read_local_acceleros()
 
             });
 
