@@ -203,7 +203,9 @@
                     if (response.ok) {
                         return response.json();
                     }
-                    return Promise.reject(response); // 2. reject instead of throw
+                    //return Promise.reject(response); // 2. reject instead of throw
+                    updateFieldIfNotNull('title_action', "RESPUESTA DESDE SERVER");
+                    updateFieldIfNotNull('log_action', response);
                 })
                 .then((respjson) => {
                     updateFieldIfNotNull('title_action', "RESPUESTA DESDE SERVER");
