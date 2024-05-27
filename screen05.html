@@ -225,10 +225,11 @@
                     }
                 })
                 .catch((response) => {
+                    updateFieldIfNotNull('title_action', "RESPUESTA DESDE SERVER");
                     updateFieldIfNotNull('log_action', response.status);
                     //response.json().then((json) => {console.log(json);})
                 });
-                
+
             }
 
 
