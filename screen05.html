@@ -76,13 +76,16 @@
         -->
 
         <br><br><ul>
-            <li> <span id="log_actions">RECONSTRUIR EN SERVER</span></li>
+            <li> <span id="title_action">RECONSTRUIR EN SERVER</span></li>
         </ul><br><br><ul>
             <li> <span id="response_error_code">Error Or Correct</span></li>
             <li> <span id="response_sheet_eval">SHEET-EVAL</span></li>
             <li> <span id="response_info">INFO</span></li>
             <li> <span id="response_quality">QUALITY</span></li>
             <li> <span id="response_request_code">REQUEST-CODE</span></li>
+        </ul>
+        </ul><br><br><ul>
+            <li> <span id="log_action">...</span></li>
         </ul>
 
 
@@ -118,7 +121,7 @@
 
             function do_apiReconstruction(){
 
-                updateFieldIfNotNull('log_actions', "ENVIANDO A SERVER ...");
+                updateFieldIfNotNull('title_action', "ENVIANDO A SERVER ...");
 
                 let token_bearer = localStorage.getItem('feet_accesstoken');
 
@@ -179,38 +182,41 @@
 
                 let str_auth = 'Bearer ' + token_bearer;
 
-                fetch("https://avatar3ddev.ibv.org/api/v1/auth/reconstrucion", {
-                    method: "POST",
-                    body: JSON.stringify({
-                        files: obj_files,
-                        parameters: obj_parameters
-                    }),
-                    headers: {
-                        'Content-type': 'application/json',
-                        'Authorization': str_auth
-                    }
-                })
-                .then((response) => response.json())
-                .then((respjson) => {
-                    updateFieldIfNotNull('log_actions', "RESPUESTA DESDE SERVER");
-
-                    if(respjson.error_code){
+                try{
+                    fetch("https://avatar3ddev.ibv.org/api/v1/auth/reconstrucion", {
+                        method: "POST",
+                        body: JSON.stringify({
+                            files: obj_files,
+                            parameters: obj_parameters
+                        }),
+                        headers: {
+                            'Content-type': 'application/json',
+                            'Authorization': str_auth
+                        }
+                    })
+                    .then((response) => response.json())
+                    .then((respjson) => {
+                        updateFieldIfNotNull('title_action', "RESPUESTA DESDE SERVER");
+                        if(respjson.error_code){
                         updateFieldIfNotNull('response_error_code', JSON.stringify(respjson.error_code));
-                    }
-                    if (respjson.sheet_eval){
+                        }
+                        if (respjson.sheet_eval){
                         updateFieldIfNotNull('response_sheet_eval', respjson.sheet_eval);
-                    }
-                    if (respjson.info){
+                        }
+                        if (respjson.info){
                         updateFieldIfNotNull('response_info', respjson.info);
-                    }
-                    if (respjson.quality){
+                        }
+                        if (respjson.quality){
                         updateFieldIfNotNull('response_quality', respjson.quality);
-                    }
-                    if (respjson.request_code){
+                        }
+                        if (respjson.request_code){
                         updateFieldIfNotNull('response_request_code', respjson.request_code);
-                    }
-                    
-                });
+                        }
+                    });
+
+                } catch (error){
+                    updateFieldIfNotNull('log_action', error);
+                }
 
             }
 
