@@ -181,17 +181,19 @@
                 };
 
                 let str_auth = 'Bearer ' + token_bearer;
+                //files: obj_files,
+                //parameters: obj_parameters
+                //'Authorization': str_auth
 
                 try{
                     fetch("https://avatar3ddev.ibv.org/api/v1/auth/reconstrucion", {
                         method: "POST",
                         body: JSON.stringify({
-                            files: obj_files,
-                            parameters: obj_parameters
+                            files: '',
+                            parameters: ''
                         }),
                         headers: {
                             'Content-type': 'application/json',
-                            'Authorization': str_auth
                         }
                     })
                     .then((response) => response.json())
