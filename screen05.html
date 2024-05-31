@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>TEST-API-RECONSTRUCTION</title>
+        <title>TEST API RECONSTRUCTION</title>
         <style>
             h1 {margin-top: 0.5rem; color: grey;}
 
@@ -78,11 +78,11 @@
         <br><br><ul>
             <li> <span id="title_action">RECONSTRUIR EN SERVER</span></li>
         </ul><br><br><ul>
-            <li> <span id="response_error_code">Error Or Correct</span></li>
-            <li> <span id="response_sheet_eval">SHEET-EVAL</span></li>
-            <li> <span id="response_info">INFO</span></li>
-            <li> <span id="response_quality">QUALITY</span></li>
-            <li> <span id="response_request_code">REQUEST-CODE</span></li>
+            <li> error-code: <span id="response_error_code">ERROR_CODE</span></li>
+            <li> sheet-eval: <span id="response_sheet_eval">SHEET-EVAL</span></li>
+            <li> info: <span id="response_info">INFO</span></li>
+            <li> quality: <span id="response_quality">QUALITY</span></li>
+            <li> request-code: <span id="response_request_code">REQUEST-CODE</span></li>
         </ul>
         </ul><br><br><ul>
             <li> <span id="log_action">...</span></li>
@@ -185,9 +185,10 @@
                 let str_auth = 'Bearer ' + token_bearer;
                 //'Authorization': str_auth
                 //files: obj_files,
-                //parameters: obj_parameters
+                //NOOO parameters: obj_parameters
+				//SIII parameters: ''
 
-                const url = "https://avatar3ddev.ibv.org/api/v1/auth/reconstrucion";
+                const url = "https://avatar3ddev.ibv.org/api/v1/models/reconstruction";
                 const headers = {
                     "Content-Type": "application/json",
                     'Authorization': str_auth
@@ -198,7 +199,7 @@
                     headers,
                     body: JSON.stringify({
                         files: obj_files,
-                        parameters: obj_parameters
+                        parameters: ''
                     }),
                 })
                 .then((response) => {
@@ -210,27 +211,21 @@
                 })
                 .then((respjson) => {
                     updateFieldIfNotNull('title_action', "RESPUESTA DESDE SERVER");
-                    if(respjson.error_code){
-                        updateFieldIfNotNull('response_error_code', JSON.stringify(respjson.error_code));
-                    }
-                    if (respjson.sheet_eval){
-                        updateFieldIfNotNull('response_sheet_eval', respjson.sheet_eval);
-                    }
-                    if (respjson.info){
-                        updateFieldIfNotNull('response_info', respjson.info);
-                    }
-                    if (respjson.quality){
-                        updateFieldIfNotNull('response_quality', respjson.quality);
-                    }
-                    if (respjson.request_code){
-                        updateFieldIfNotNull('response_request_code', respjson.request_code);
-                    }
+					console.log(respjson);
+					updateFieldIfNotNull('response_error_code', JSON.stringify(respjson.error_code));
+					updateFieldIfNotNull('response_sheet_eval', respjson.sheet_eval);
+					updateFieldIfNotNull('response_info', respjson.info);
+					updateFieldIfNotNull('response_quality', respjson.quality);
+					updateFieldIfNotNull('response_request_code', respjson.request_code);
                 })
                 .catch((response) => {
                     updateFieldIfNotNull('title_action', "RESPUESTA DESDE SERVER");
-                    updateFieldIfNotNull('log_action', response);
+                    //updateFieldIfNotNull('log_action', response);
                     //updateFieldIfNotNull('log_action', response.status);
-                    //response.json().then((json) => {console.log(json);})
+                    response.json().then((json) => {
+						let str_error_json = JSON.stringify(json);
+						updateFieldIfNotNull('log_action', str_error_json);
+						console.log(json);})
                 });
 
             }
