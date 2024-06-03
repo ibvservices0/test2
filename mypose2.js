@@ -84,7 +84,7 @@ function verEnCanvas(img){
     */
     let clockwise = false; //pie_derecho
     if (localStorage.getItem('feet_foottype') == 1){
-        clockwise = true; //pie_izquierdo
+        clockwise = false; //pie_izquierdo
     }
 
     const degrees = clockwise == true? 90: -90;
