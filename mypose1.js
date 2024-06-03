@@ -71,8 +71,8 @@ function verEnCanvas(img){
     let mycanvas = document.getElementById("thecanvas");
     mycanvas.removeAttribute("hidden");
     
-    const iw = img.width;
-    const ih = img.height;
+    const iw = img.naturalWidth;
+    const ih = img.naturalHeight;
     let ctx = mycanvas.getContext('2d');
     /**/
     mycanvas.width = iw;
