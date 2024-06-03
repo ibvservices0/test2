@@ -71,10 +71,23 @@ function verEnCanvas(img){
     let mycanvas = document.getElementById("thecanvas");
     mycanvas.removeAttribute("hidden");
     
-    mycanvas.width = img.width;
-    mycanvas.height = img.height;
-    mycanvas.getContext('2d').clearRect(0, 0, mycanvas.width, mycanvas.height);
-    mycanvas.getContext('2d').drawImage(img, 0, 0);
+    const iw = img.naturalWidth;
+    const ih = img.naturalHeight;
+    let ctx = mycanvas.getContext('2d');
+    /**/
+    mycanvas.width = iw;
+    mycanvas.height = ih;
+    ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
+    ctx.drawImage(img, 0, 0);
+    /**/
+    let clockwise = true;
+    const degrees = clockwise == true? 90: -90;
+    mycanvas.width = ih;
+    mycanvas.height = iw;
+    if(clockwise){ctx.translate(ih, 0);
+    } else {ctx.translate(0, iw);}
+    ctx.rotate(degrees*Math.PI/180);
+    
 
     const the_dataURL = mycanvas.toDataURL('image/jpeg', 1.0);;
     // Logs data:image/png;base64,wL2dvYWwgbW9yZ...
@@ -82,6 +95,7 @@ function verEnCanvas(img){
     // Logs wL2dvYWwgbW9yZ...
     localStorage.removeItem('feet_photo3');
     localStorage.setItem('feet_photo3', the_base64);
+
     verEnCanvasBis(img);
 }
 
