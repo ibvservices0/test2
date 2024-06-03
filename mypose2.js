@@ -82,7 +82,11 @@ function verEnCanvas(img){
     ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
     ctx.drawImage(img, 0, 0);
     */
-    let clockwise = false;
+    let clockwise = false; //pie_derecho
+    if (localStorage.getItem('feet_foottype') == 1){
+        clockwise = true; //pie_izquierdo
+    }
+
     const degrees = clockwise == true? 90: -90;
     mycanvas.width = ih;
     mycanvas.height = iw;

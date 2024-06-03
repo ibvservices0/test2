@@ -23,10 +23,9 @@
             }
             .myelement {
                 color: #04AA6D;
-                width: 50%;
+                width: 33%;
                 display: inline-block;
                 height: 30px;
-                margin-right: 15px;
             }
             /* Style the links inside the navigation bar */
             .topnav a {
@@ -63,7 +62,8 @@
         <div class="topnav_outer">
             <div class="topnav">
                 <span class="myelement">API-AUTHORIZE</span>
-                <a class="myelement" href="screen02.html">Siguiente</a>
+                <a class="myelement" id="left_action" href="#" role="button">Left</a>
+                <a class="myelement" id="right_action" href="#" role="button">Right</a>
             </div>
         </div>
 
@@ -116,6 +116,31 @@
 
             document.addEventListener("DOMContentLoaded", () => {
                 do_authorize();
+
+                let btLeft = document.getElementById("left_action");
+                btLeft.onclick = function(e) {
+                    e.preventDefault();
+
+                    localStorage.removeItem('feet_sheetmodel');
+                    localStorage.setItem('feet_sheetmodel', 1);
+                    localStorage.removeItem('feet_foottype');
+                    localStorage.setItem('feet_foottype', 1);
+
+                    window.location = ('screen02.html') 
+                };
+
+                let btRight = document.getElementById("right_action");
+                btLeft.onclick = function(e) {
+                    e.preventDefault();
+
+                    localStorage.removeItem('feet_sheetmodel');
+                    localStorage.setItem('feet_sheetmodel', 1);
+                    localStorage.removeItem('feet_foottype');
+                    localStorage.setItem('feet_foottype', 2);
+
+                    window.location = ('screen02.html') 
+                };
+
             });
 
         </script>
