@@ -83,7 +83,7 @@ function verEnCanvas(img){
     ctx.drawImage(img, 0, 0);
     */
     let clockwise = true; //pie_derecho
-    if (localStorage.getItem('feet_foottype') == 1){
+    if (localStorage.getItem('feet_foottype') == '1'){
         clockwise = false; //pie_izquierdo
     }
 
