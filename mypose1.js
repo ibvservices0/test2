@@ -74,21 +74,13 @@ function verEnCanvas(img){
     const iw = img.naturalWidth;
     const ih = img.naturalHeight;
     let ctx = mycanvas.getContext('2d');
-    /*
+    /**/
     mycanvas.width = iw;
     mycanvas.height = ih;
     ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
     ctx.drawImage(img, 0, 0);
-    */
-    let clockwise = false;
-    const degrees = clockwise == true? 90: -90;
-    mycanvas.width = ih;
-    mycanvas.height = iw;
-    if(clockwise){ctx.translate(ih, 0);
-    } else {ctx.translate(0, iw);}
-    ctx.rotate(degrees*Math.PI/180);
-    ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
-    ctx.drawImage(img, 0, 0);
+    /**/
+    
 
 
     const the_dataURL = mycanvas.toDataURL('image/jpeg', 1.0);;
