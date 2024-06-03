@@ -87,8 +87,6 @@ function verEnCanvas(img){
     if(clockwise){ctx.translate(ih, 0);
     } else {ctx.translate(0, iw);}
     ctx.rotate(degrees*Math.PI/180);
-    ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
-    ctx.drawImage(img, 0, 0);
 
 
     const the_dataURL = mycanvas.toDataURL('image/jpeg', 1.0);;
@@ -98,7 +96,7 @@ function verEnCanvas(img){
     localStorage.removeItem('feet_photo1');
     localStorage.setItem('feet_photo1', the_base64);
 
-    verEnCanvasBis(img);
+    //verEnCanvasBis(img);
 }
 
 
