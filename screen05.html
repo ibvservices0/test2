@@ -26,6 +26,7 @@
                 width: 50%;
                 display: inline-block;
                 height: 30px;
+                margin-right: 15px;
             }
             /* Style the links inside the navigation bar */
             .topnav a {
@@ -55,7 +56,8 @@
         <div class="topnav_outer">
             <div class="topnav">
                 <span class="myelement">API-RECONSTRUCTION</span>
-                <a class="myelement" id="start_action" href="#" role="button">ACCION</a>
+                <a class="myelement" id="right_action" href="#" role="button">RIGHT</a>
+                <a class="myelement" id="left_action" href="#" role="button">LEFT</a>
             </div>
         </div>
 
@@ -119,7 +121,7 @@
 
 
 
-            function do_apiReconstruction(){
+            function do_apiReconstruction(typefoot){
 
                 updateFieldIfNotNull('title_action', "ENVIANDO A SERVER ...");
 
@@ -139,7 +141,7 @@
 
                 let input1_content = {
                     sheet_model: 1,
-                    foot_type: 2,
+                    foot_type: typefoot,
                     ac0_0: obj_accelero_pose1.ac0_0,
                     ac1_0: obj_accelero_pose1.ac1_0,
                     ac2_0: obj_accelero_pose1.ac2_0,
@@ -233,11 +235,16 @@
 
             document.addEventListener("DOMContentLoaded", () => {
 
-                let btAction = document.getElementById("start_action");
-                btAction.onclick = function(e) {
+                let btRightAction = document.getElementById("right_action");
+                btRightAction.onclick = function(e) {
                     e.preventDefault();
-                    //alert('ACCION');
-                    do_apiReconstruction();
+                    do_apiReconstruction(2);
+                };
+
+                let btLeftAction = document.getElementById("left_action");
+                btLeftAction.onclick = function(e) {
+                    e.preventDefault();
+                    do_apiReconstruction(1);
                 };
 
                 //read_local_acceleros()
