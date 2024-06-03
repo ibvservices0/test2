@@ -71,8 +71,10 @@ function verEnCanvas(img){
     let mycanvas = document.getElementById("thecanvas");
     mycanvas.removeAttribute("hidden");
     
-    const iw = img.naturalWidth;
-    const ih = img.naturalHeight;
+    const iw = img.width;
+    //nooo const iw = img.naturalWidth;
+    const ih = img.height;
+    //nooo const ih = img.naturalHeight;
     let ctx = mycanvas.getContext('2d');
     /**/
     mycanvas.width = iw;
@@ -80,6 +82,13 @@ function verEnCanvas(img){
     ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
     ctx.drawImage(img, 0, 0);
     /**/
+    let clockwise = false;
+    const degrees = clockwise == true? 90: -90;
+    mycanvas.width = ih;
+    mycanvas.height = iw;
+    if(clockwise){ctx.translate(ih, 0);
+    } else {ctx.translate(0, iw);}
+    ctx.rotate(degrees*Math.PI/180);
     
 
 
