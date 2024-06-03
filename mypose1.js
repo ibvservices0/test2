@@ -89,6 +89,7 @@ function verEnCanvas(img){
     if(clockwise){ctx.translate(ih, 0);
     } else {ctx.translate(0, iw);}
     ctx.rotate(degrees*Math.PI/180);
+    ctx.drawImage(img, 0, 0);
     
 
 
