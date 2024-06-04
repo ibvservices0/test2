@@ -57,7 +57,7 @@
         <div class="topnav_outer">
             <div class="topnav">
                 <span class="myelement">CAMERA-FEET</span>
-                <a class="myelement" id="next_action" href="#" role="button">Siguiente14</a>
+                <a class="myelement" id="next_action" href="#" role="button">Siguiente15</a>
             </div>
         </div>
 
@@ -72,12 +72,19 @@
             }
 
             document.addEventListener("DOMContentLoaded", () => {
+
                 let btNext = document.getElementById("next_action");
                 btNext.onclick = function(e) {
                     e.preventDefault();
                     permission_accelerometers();
                     window.location = ('screen01.html') 
                 };
+
+                var myScreenOrientation = window.screen.orientation;
+                myScreenOrientation.lock("portrait-primary")
+                .then(() => {})
+                .catch((error) => {});
+
             });
 
         </script>
