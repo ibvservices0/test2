@@ -60,7 +60,7 @@
             <div class="topnav_outer">
                 <div class="topnav">
                     <span class="myelement">CAMERA-FEET</span>
-                    <a class="myelement" id="next_action" href="#" role="button">Siguiente16</a>
+                    <a class="myelement" id="next_action" href="#" role="button">Siguiente17</a>
                 </div>
             </div>
 
@@ -79,6 +79,32 @@
                 }
             }
 
+            const requestFullScreen = async () => {
+                let element = await document.documentElement;
+                let requestMethod =
+                    element.requestFullScreen ||
+                    element.webkitRequestFullScreen ||
+                    element.mozRequestFullScreen ||
+                    element.msRequestFullScreen;
+                if (requestMethod) {
+                    requestMethod.call(element);
+                    return true;
+                } else if (typeof window.ActiveXObject !== "undefined") {
+                    let wscript = new ActiveXObject("WScript.Shell");
+                    if (wscript !== null) {
+                        wscript.SendKeys("{F11}");
+                        return true;
+                    }
+                }
+            }
+
+            const lock = async () => {
+                var myScreenOrientation = window.screen.orientation;
+                myScreenOrientation.lock("portrait-primary");
+                return true;
+            }
+
+
             document.addEventListener("DOMContentLoaded", () => {
 
                 let btNext = document.getElementById("next_action");
@@ -88,17 +114,8 @@
                     window.location = ('screen01.html') 
                 };
 
-                let mainContainer = document.getElementById("main_container");
-                mainContainer.requestFullscreen()
-                .then(() => {
-
-                    var myScreenOrientation = window.screen.orientation;
-                    myScreenOrientation.lock("portrait-primary")
-                        .then(() => {})
-                        .catch((error) => {});
-
-                })
-                .catch((error) => {})
+                requestFullScreen();
+                lock();
 
             });
 
