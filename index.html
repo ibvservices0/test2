@@ -54,12 +54,20 @@
         </style>
     </head>
     <body>
-        <div class="topnav_outer">
-            <div class="topnav">
-                <span class="myelement">CAMERA-FEET</span>
-                <a class="myelement" id="next_action" href="#" role="button">Siguiente15</a>
+
+        <div id="main_container">
+
+            <div class="topnav_outer">
+                <div class="topnav">
+                    <span class="myelement">CAMERA-FEET</span>
+                    <a class="myelement" id="next_action" href="#" role="button">Siguiente16</a>
+                </div>
             </div>
+
+            <span>SCAN-FEET</span>
+
         </div>
+
 
         <script>
 
@@ -80,10 +88,17 @@
                     window.location = ('screen01.html') 
                 };
 
-                var myScreenOrientation = window.screen.orientation;
-                myScreenOrientation.lock("portrait-primary")
-                .then(() => {})
-                .catch((error) => {});
+                let mainContainer = document.getElementById("main_container");
+                mainContainer.requestFullscreen()
+                .then(() => {
+
+                    var myScreenOrientation = window.screen.orientation;
+                    myScreenOrientation.lock("portrait-primary")
+                        .then(() => {})
+                        .catch((error) => {});
+
+                })
+                .catch((error) => {})
 
             });
 
